@@ -27,6 +27,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
     - name: Validate Gradle Wrapper
       uses: gradle/wrapper-validation-action@v1 
       # make sure that our plugin builds
