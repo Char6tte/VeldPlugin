@@ -57,6 +57,7 @@ jobs:
         mkdir -p ~/.ssh/
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+        
 
     - name: Deploy
-      run: rsync -ahvz -e "ssh -i ~/.ssh/id_rsa -p ${{ secrets.SSH_PORT }} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_ADDR }}:/opt/PluginServer/plugins/ --include-from="build/libs/"
+      run: rsync -ahvz -e "ssh -i ~/.ssh/id_rsa -p ${{ secrets.SSH_PORT }} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_ADDR }}:/opt/ --include-from="build/libs/"
