@@ -51,7 +51,7 @@ jobs:
        title: "Development Build"
        files: |
         build/libs/*.jar
-         -
+
     - name: ssh key generate
       run: |
         mkdir -p ~/.ssh/
