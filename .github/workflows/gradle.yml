@@ -18,30 +18,32 @@ permissions:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
+
     - name: Make gradlew executable
       run: chmod +x ./gradlew
+
     - name: Validate Gradle Wrapper
       uses: gradle/wrapper-validation-action@v1 
+
       # make sure that our plugin builds
     - name: Build Project
       run: ./gradlew build
+
       # build the jars
     - name: Build shadowJars
       run: ./gradlew shadowJar
-#    - name: Build with Gradle
-#      uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
-#      with:
-#        arguments: build
-    # create a development build
+
     - name: Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
@@ -51,10 +53,12 @@ jobs:
        title: "Development Build"
        files: |
         build/libs/*.jar
+
     - name: ssh key generate
      run: |
       mkdir -p ~/.ssh/
       echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
       chmod 600 ~/.ssh/id_rsa
+
     - name: Deploy
       run: rsync -ahvz -e "ssh -i ~/.ssh/id_rsa -p ${{ secrets.SSH_PORT }} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_ADDR }}:/opt/PluginServer/plugins/ --include-from="build/libs/*"
