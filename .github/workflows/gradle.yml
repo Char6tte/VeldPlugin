@@ -55,6 +55,8 @@ jobs:
     - name: ssh key generate
       run: |
         mkdir -p ~/.ssh/
+        ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+        cp -f ./config ~/.ssh/config
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         
