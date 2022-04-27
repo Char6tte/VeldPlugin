@@ -5,13 +5,16 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 name: Java CI with Gradle
+
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+
 permissions:
   contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -48,12 +51,3 @@ jobs:
        title: "Development Build"
        files: |
         build/libs/*.jar
-
-    - name: ssh key generate
-     run: |
-      mkdir -p ~/.ssh/
-      echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-      chmod 600 ~/.ssh/id_rsa
-
-    - name: Deploy
-      run: rsync -ahvz -e "ssh -i ~/.ssh/id_rsa -p ${{ secrets.SSH_PORT }} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_ADDR }}:/opt/PluginServer/plugins/ --include-from="build/libs/*"
