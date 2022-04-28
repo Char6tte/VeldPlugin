@@ -56,6 +56,6 @@ jobs:
       uses: shimataro/ssh-key-action@v1
       with: # shimataro/ssh-key-actionに渡すパラメーター
         key: ${{ secrets.SSH_KEY }} # 必須
-        known_hosts: unnecessary # 必須
+        known_hosts: "unnecessary" # 必須
     - name: run deploy script
       run: bash deploy.sh
