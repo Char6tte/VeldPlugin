@@ -51,11 +51,11 @@ jobs:
        title: "Development Build"
        files: |
         build/libs/*.jar
+
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v1
       with: # shimataro/ssh-key-actionに渡すパラメーター
         key: ${{ secrets.SSH_KEY }} # 必須
-        name: id_rsa # 省略可
-        known_hosts: ${{ secrets.KNOWN_HOSTS }} # 必須
+        known_hosts: unnecessary # 必須
     - name: run deploy script
       run: bash deploy.sh
