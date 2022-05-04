@@ -52,10 +52,11 @@ jobs:
        files: |
         build/libs/*.jar
 
-    - name: Install SSH key
-      uses: shimataro/ssh-key-action@v1
-      with: # shimataro/ssh-key-actionに渡すパラメーター
-        key: ${{ secrets.SSH_KEY }} # 必須
-        known_hosts: "unnecessary" # 必須
-    - name: run deploy script
-      run: bash deploy.sh
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.SSH_PASS }}
+        port: ${{ secrets.SSH_PORT }}
+        script: bash deploy.sh
