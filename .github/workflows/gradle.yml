@@ -59,4 +59,4 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_PASS }}
         port: ${{ secrets.SSH_PORT }}
-        script: bash deploy.sh
+        script: ls
