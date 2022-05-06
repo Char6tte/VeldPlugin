@@ -2,7 +2,6 @@ package com.charlotte04.veldplugin
 
 import com.charlotte04.veldplugin.commands.VeldCommandHandler
 import org.bukkit.command.CommandExecutor
-import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.plugin.java.annotation.command.Command
 import org.bukkit.plugin.java.annotation.command.Commands
@@ -18,7 +17,9 @@ import org.bukkit.plugin.java.annotation.plugin.author.Author
     Command(name = "veld")
 )
 
-class VeldPlugin : JavaPlugin(), Listener {
+class VeldPlugin : JavaPlugin(){
+
+
     override fun onEnable() {
         // Plugin startup logical
         server.consoleSender.sendMessage("[Veld]Enabled")
@@ -27,10 +28,11 @@ class VeldPlugin : JavaPlugin(), Listener {
 
     override fun onDisable() {
         // Plugin shutdown logic
-
     }
-}
 
-fun JavaPlugin.regCommand(command:String,executor:CommandExecutor){
-    getCommand(command)?.setExecutor(executor)
+
+
+    private fun regCommand(command:String, executor:CommandExecutor){
+        getCommand(command)?.setExecutor(executor)
+    }
 }
