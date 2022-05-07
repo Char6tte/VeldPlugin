@@ -54,9 +54,10 @@ jobs:
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0 #（※21年12月31日時点最新版は4.2です）
       with:
-       server: ${{ secrets.SSH_HOST}}
+       server: ${{secrets.SSH_HOST}}
        username: ${{ secrets.SSH_USER }}
        password: ${{ secrets.SSH_PASS }}
+       port: ${{ secrets.SSH_FTP_PORT }}
        server-dir: ${{ secrets.FTP_SERVER_DIR }}
 
     - name: executing remote ssh commands using password
