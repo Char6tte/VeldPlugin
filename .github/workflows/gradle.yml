@@ -62,4 +62,4 @@ jobs:
         script: |
           cd /opt/PluginServer/plugins/
           wget https://github.com/Char6tte/VeldPlugin/releases/download/latest/VeldPlugin-0.1-all.jar
-          screen -p 0 -S minecraft -X eval ' stuff "say てきとう\015" '
+          screen -p 0 -S minecraft -X eval ' stuff "relaod confirm\015" '
