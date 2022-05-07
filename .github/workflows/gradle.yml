@@ -57,7 +57,7 @@ jobs:
        server: ${{secrets.SSH_HOST}}
        username: ${{ secrets.SSH_USER }}
        password: ${{ secrets.SSH_PASS }}
-       port: ${{ secrets.SSH_FTP_PORT }}
+       port: 20210
        server-dir: ${{ secrets.FTP_SERVER_DIR }}
 
     - name: executing remote ssh commands using password
