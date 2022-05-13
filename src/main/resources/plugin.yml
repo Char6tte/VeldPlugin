@@ -2,3 +2,5 @@ name: VeldPlugin
 version: '${version}'
 main: com.charlotte04.veldplugin.VeldPlugin
 api-version: 1.18
+commands:
+  veld:
