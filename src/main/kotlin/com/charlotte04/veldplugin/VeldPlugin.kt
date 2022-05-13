@@ -30,7 +30,9 @@ class VeldPlugin : JavaPlugin(){
         // Plugin shutdown logic
     }
 
+    fun fileLoad(){
 
+    }
 
     private fun regCommand(command:String, executor:CommandExecutor){
         getCommand(command)?.setExecutor(executor)
