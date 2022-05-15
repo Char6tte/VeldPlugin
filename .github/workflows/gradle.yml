@@ -29,7 +29,9 @@ jobs:
         distribution: 'temurin'
 
     - name: Make gradlew executable
-      run: chmod +x ./gradlew
+      run: |
+      chmod +x ./gradlew
+      ls
 
     - name: Validate Gradle Wrapper
       uses: gradle/wrapper-validation-action@v1 
