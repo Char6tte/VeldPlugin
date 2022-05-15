@@ -5,7 +5,7 @@ import org.bukkit.ChatColor
 import org.bukkit.command.CommandExecutor
 import org.bukkit.plugin.java.JavaPlugin
 
-class VeldPlugin : JavaPlugin(){
+open class VeldPlugin : JavaPlugin(){
 
 
     override fun onEnable() {
