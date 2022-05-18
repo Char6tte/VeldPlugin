@@ -1,3 +1,5 @@
+@file:Suppress("SameParameterValue")
+
 package com.charlotte04.veldplugin
 
 import com.charlotte04.veldplugin.commands.VeldCommandHandler
@@ -9,6 +11,7 @@ import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 
 
+@Suppress("unused")
 open class VeldPlugin : JavaPlugin(){
 
     companion object : JavaPlugin(){
@@ -33,7 +36,7 @@ open class VeldPlugin : JavaPlugin(){
         // Plugin shutdown logic
     }
 
-    fun fileLoad(){
+    private fun fileLoad(){
 
     }
 
