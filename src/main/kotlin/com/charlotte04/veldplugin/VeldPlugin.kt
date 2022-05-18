@@ -2,21 +2,20 @@
 
 package com.charlotte04.veldplugin
 
-import com.charlotte04.veldplugin.commands.VeldCommandHandler
+import com.charlotte04.veldplugin.commands.*
 import org.bukkit.ChatColor
 import org.bukkit.ChatColor.*
 import org.bukkit.command.CommandExecutor
+import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
-
-
-
 
 
 @Suppress("unused")
 open class VeldPlugin : JavaPlugin(){
 
     open lateinit var instance : VeldPlugin
+    private lateinit var commandsConf : YamlConfiguration
 
     open fun getPath(): File {
         return instance.dataFolder
@@ -26,11 +25,9 @@ open class VeldPlugin : JavaPlugin(){
     override fun onEnable() {
         instance = this
 
-        consoleMes( "Path:" +  getPath().path.toString(), GOLD)
+        fileLoad()
 
         regCommand("veld", VeldCommandHandler)
-
-        fileLoad()
 
         consoleMes("Enabled", GREEN)
     }
@@ -40,6 +37,29 @@ open class VeldPlugin : JavaPlugin(){
     }
 
     private fun fileLoad(){
+        val commandsPath = File(getPath(), "commands.yml")
+
+        if (File(getPath(), "commands.yml").exists()) {
+            if (config.getBoolean("Plugin.Debug")
+            ) consoleMes("Load commands.yml ...", GREEN)
+            commandsConf = YamlConfiguration.loadConfiguration(commandsPath)
+        } else {
+            consoleMes(" §4commands.yml are not found", BLUE)
+            return
+        }
+
+        try{
+            commandsConf.contains("commands")
+        } catch (var3 : Exception){
+            return
+        }
+
+        commandsConf.getConfigurationSection("commands")?.getKeys(false)?.forEach{key ->
+            run {
+                val cmdName = key
+                val classname = commandsConf.getString("commands.$key.classname")
+            }
+        }
 
     }
 
