@@ -12,16 +12,10 @@ import java.io.File
 open class VeldPlugin : JavaPlugin(){
 
     companion object : JavaPlugin(){
-        lateinit var plugin: Plugin
+        lateinit var plugin : Plugin
     }
-
-    open fun getPath(): File {
-        return plugin.dataFolder
-    }
-
 
     override fun onEnable() {
-
         plugin = this
 
         consoleMes( "Path:" +  getPath().path.toString(), GOLD)
@@ -29,11 +23,18 @@ open class VeldPlugin : JavaPlugin(){
         //commands startup
         regCommand("veld", VeldCommandHandler)
 
+        fileLoad()
+
         consoleMes("Enabled", GREEN)
     }
 
     override fun onDisable() {
         // Plugin shutdown logic
+    }
+
+
+    open fun getPath(): File {
+        return plugin.dataFolder
     }
 
     fun fileLoad(){
