@@ -26,7 +26,6 @@ open class VeldPlugin : JavaPlugin(){
 
         consoleMes( "Path:" +  getPath().path.toString(), GOLD)
 
-
         //commands startup
         regCommand("veld", VeldCommandHandler)
 
