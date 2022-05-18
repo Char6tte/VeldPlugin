@@ -6,7 +6,6 @@ import org.bukkit.command.CommandSender
 
 object VeldCommandHandler : CommandExecutor{
 
-
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         sender.server.consoleSender.sendMessage("======== ========")
         sender.server.consoleSender.sendMessage("/veld")
