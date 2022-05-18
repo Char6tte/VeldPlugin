@@ -24,7 +24,7 @@ open class VeldPlugin : JavaPlugin(){
 
         plugin = this
 
-        consoleMes( "Path:" +  getPath().path.toString(), WHITE)
+        consoleMes( "Path:" +  getPath().path.toString(), GOLD)
 
 
         //commands startup
