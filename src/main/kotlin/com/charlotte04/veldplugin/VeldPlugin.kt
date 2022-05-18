@@ -4,21 +4,29 @@ package com.charlotte04.veldplugin
 
 import com.charlotte04.veldplugin.commands.VeldCommandHandler
 import org.bukkit.ChatColor
-import org.bukkit.ChatColor.AQUA
-import org.bukkit.ChatColor.GREEN
+import org.bukkit.ChatColor.*
 import org.bukkit.command.CommandExecutor
 import org.bukkit.plugin.java.JavaPlugin
+import java.io.File
+
+
+
 
 
 @Suppress("unused")
 open class VeldPlugin : JavaPlugin(){
 
-    var instance: VeldPlugin? = null
+    open lateinit var instance : VeldPlugin
+
+    open fun getPath(): File {
+        return instance.dataFolder
+    }
+
 
     override fun onEnable() {
         instance = this
 
-        //consoleMes( "Path:" +  getPath().path.toString(), GOLD)
+        consoleMes( "Path:" +  getPath().path.toString(), GOLD)
 
         regCommand("veld", VeldCommandHandler)
 
