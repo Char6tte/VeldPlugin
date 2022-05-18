@@ -24,11 +24,13 @@ open class VeldPlugin : JavaPlugin(){
 
         plugin = this
 
+        consoleMes( "Path:" +  getPath().path.toString(), WHITE)
+
+
         //commands startup
         regCommand("veld", VeldCommandHandler)
 
         consoleMes("Enabled", GREEN)
-        consoleMes(getPath().path.toString(), WHITE)
     }
 
     override fun onDisable() {
