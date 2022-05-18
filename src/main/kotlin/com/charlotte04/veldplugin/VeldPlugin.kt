@@ -13,8 +13,10 @@ import org.bukkit.plugin.java.JavaPlugin
 @Suppress("unused")
 open class VeldPlugin : JavaPlugin(){
 
+    var instance: VeldPlugin? = null
+
     override fun onEnable() {
-        //plugin = this
+        instance = this
 
         //consoleMes( "Path:" +  getPath().path.toString(), GOLD)
 
