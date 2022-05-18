@@ -15,15 +15,13 @@ import org.bukkit.plugin.java.JavaPlugin
 open class VeldPlugin : JavaPlugin(){
 
     companion object : JavaPlugin(){
-        lateinit var plugin : Plugin
+        lateinit var plugin: Plugin
     }
 
     override fun onEnable() {
         plugin = this
 
         //consoleMes( "Path:" +  getPath().path.toString(), GOLD)
-
-        //commands startup
 
         regCommand("veld", VeldCommandHandler)
 
@@ -41,7 +39,7 @@ open class VeldPlugin : JavaPlugin(){
     }
 
     open fun consoleMes(string: String, color: ChatColor){
-        plugin.server.consoleSender.sendMessage("[VeldPlugin]$color$string")
+        this.server.consoleSender.sendMessage("[VeldPlugin]$color$string")
     }
 
     private fun regCommand(name: String, executor: CommandExecutor) {
