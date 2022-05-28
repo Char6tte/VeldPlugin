@@ -5,3 +5,7 @@ api-version: 1.18
 commands:
   veld:
     aliases: [ve]
+  veldsetting:
+    aliases: [veset]
+  tag:
+    aliases: [vetag]

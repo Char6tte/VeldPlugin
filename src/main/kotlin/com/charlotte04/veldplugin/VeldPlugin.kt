@@ -7,6 +7,8 @@ import org.bukkit.ChatColor
 import org.bukkit.ChatColor.*
 import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.file.YamlConfiguration
+import org.bukkit.event.Listener
+import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 
@@ -25,9 +27,13 @@ open class VeldPlugin : JavaPlugin(){
     override fun onEnable() {
         instance = this
 
-        fileLoad()
+        //fileLoad()
 
         regCommand("veld", VeldCommandHandler)
+        regCommand("veldsetting", SettingHandler)
+        regCommand("tag", TagHandler)
+
+        regEvent(TagHandler,this)
 
         consoleMes("Enabled", GREEN)
     }
@@ -36,6 +42,27 @@ open class VeldPlugin : JavaPlugin(){
         // Plugin shutdown logic
     }
 
+
+
+    open fun consoleMes(string: String, color: ChatColor){
+        this.server.consoleSender.sendMessage("[VeldPlugin]$color$string")
+    }
+
+    private fun regCommand(name: String, executor: CommandExecutor) {
+        getCommand(name)?.run {
+            setExecutor(executor)
+            consoleMes("/$name を登録しました", AQUA)
+        } ?: logger.severe("/$name を登録できませんでした")
+    }
+
+    private fun regEvent(executor: Listener, plugin : Plugin){
+        server.pluginManager.registerEvents(executor, plugin)
+    }
+
+
+
+
+    //未使用
     private fun fileLoad(){
         val commandsPath = File(getPath(), "commands.yml")
 
@@ -47,7 +74,6 @@ open class VeldPlugin : JavaPlugin(){
             consoleMes(" §4commands.yml are not found", BLUE)
             return
         }
-
         try{
             commandsConf.contains("commands")
         } catch (var3 : Exception){
@@ -61,16 +87,5 @@ open class VeldPlugin : JavaPlugin(){
             }
         }
 
-    }
-
-    open fun consoleMes(string: String, color: ChatColor){
-        this.server.consoleSender.sendMessage("[VeldPlugin]$color$string")
-    }
-
-    private fun regCommand(name: String, executor: CommandExecutor) {
-        getCommand(name)?.run {
-            setExecutor(executor)
-            consoleMes("/$name を登録しました", AQUA)
-        } ?: logger.severe("/$name を登録できませんでした")
     }
 }

@@ -1,3 +1,5 @@
 commands:
-  settings:
-    classname: "settings"
+  VeldCommandHandler:
+    commandname: "veld"
+  veldsettings:
+    commandname: "settings"

@@ -1,5 +1,6 @@
 package com.charlotte04.veldplugin.commands
 
+import com.charlotte04.veldplugin.VeldPlugin
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
