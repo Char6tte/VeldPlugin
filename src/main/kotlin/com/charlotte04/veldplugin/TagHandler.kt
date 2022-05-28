@@ -14,7 +14,9 @@ object TagHandler : CommandExecutor, Listener {
 
     @EventHandler
     fun tagChange(event : PlayerAnimationEvent){
-        event.animationType.name
+
+        event.player.sendMessage(event.animationType.name)
+
 
     }
 
